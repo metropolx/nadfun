@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "tokens.json",
+  "description": "One row per token launched on nad.fun (one CurveCreate event).",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "chain",
+      "token_address",
+      "launchpad",
+      "version",
+      "contract_version",
+      "contract_address",
+      "creator",
+      "name",
+      "symbol",
+      "token_uri",
+      "quote_token",
+      "pool_address",
+      "virtual_quote_reserve",
+      "virtual_token_reserve",
+      "target_token_amount",
+      "min_token_reserve",
+      "created_at",
+      "block_number",
+      "tx_hash",
+      "log_index"
+    ],
+    "properties": {
+      "chain": {
+        "description": "Chain the event was observed on.",
+        "type": "string",
+        "enum": [
+          "monad"
+        ]
+      },
+      "token_address": {
+        "description": "Address of the launched ERC-20 token.",
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{40}$"
+      },
+      "launchpad": {
+        "description": "Launchpad that emitted the event.",
+        "type": "string",
+        "enum": [
+          "nadfun"
+        ]
+      },
+      "version": {
+        "description": "nad.fun launch generation: `old` (contract_version `v3`) or `v2` (contract_version `nadfun-v2`).",
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          "old",
+          "v2",
+          null
+        ]
+      },
+      "contract_version": {
+        "description": "Label of the bonding-curve contract that emitted the event.",
+        "type": "string",
+        "minLength": 1
+      },
+      "contract_address": {
+        "description": "Bonding-curve contract that emitted the event.",
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{40}$"
+      },
+      "creator": {
+        "description": "Address that launched the token.",
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{40}$"
+      },
+      "name": {
+        "description": "Token name as recorded at launch. User-chosen, may contain any Unicode.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "minLength": 1
+      },
+      "symbol": {
+        "description": "Token symbol as recorded at launch. User-chosen.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "minLength": 1
+      },
+      "token_uri": {
+        "description": "URI of the token's off-chain metadata JSON.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "minLength": 1
+      },
+      "quote_token": {
+        "description": "Token the curve is priced in. Usually WMON (`0x3bd359c1119da7da1d913d1c4d2b7c461115433a`); some `v2` tokens pair with other tokens.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "pattern": "^0x[0-9a-f]{40}$"
+      },
+      "pool_address": {
+        "description": "Pool address recorded for the token at launch.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "pattern": "^0x[0-9a-f]{40}$"
+      },
+      "virtual_quote_reserve": {
+        "description": "Initial virtual reserve of the quote token on the curve.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "pattern": "^[0-9]+$"
+      },
+      "virtual_token_reserve": {
+        "description": "Initial virtual reserve of the launched token on the curve.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "pattern": "^[0-9]+$"
+      },
+      "target_token_amount": {
+        "description": "Target token amount of the curve.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "pattern": "^[0-9]+$"
+      },
+      "min_token_reserve": {
+        "description": "Minimum token reserve of the curve. Only set for `v2` tokens.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "pattern": "^[0-9]+$"
+      },
+      "created_at": {
+        "description": "Timestamp of the block containing the launch event.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+      },
+      "block_number": {
+        "description": "Block containing the event.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "tx_hash": {
+        "description": "Transaction containing the event.",
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{64}$"
+      },
+      "log_index": {
+        "description": "Position of the event log within its block.",
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  }
+}

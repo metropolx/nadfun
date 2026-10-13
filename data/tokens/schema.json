@@ -1,0 +1,207 @@
+{
+  "fields": [
+    {
+      "name": "chain",
+      "description": "Chain the event was observed on.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "monad"
+        ]
+      }
+    },
+    {
+      "name": "token_address",
+      "description": "Address of the launched ERC-20 token.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "pattern": "0x[0-9a-f]{40}"
+      }
+    },
+    {
+      "name": "launchpad",
+      "description": "Launchpad that emitted the event.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "nadfun"
+        ]
+      }
+    },
+    {
+      "name": "version",
+      "description": "nad.fun launch generation: `old` (contract_version `v3`) or `v2` (contract_version `nadfun-v2`).",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "enum": [
+          "old",
+          "v2"
+        ]
+      }
+    },
+    {
+      "name": "contract_version",
+      "description": "Label of the bonding-curve contract that emitted the event.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "minLength": 1
+      }
+    },
+    {
+      "name": "contract_address",
+      "description": "Bonding-curve contract that emitted the event.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "pattern": "0x[0-9a-f]{40}"
+      }
+    },
+    {
+      "name": "creator",
+      "description": "Address that launched the token.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "pattern": "0x[0-9a-f]{40}"
+      }
+    },
+    {
+      "name": "name",
+      "description": "Token name as recorded at launch. User-chosen, may contain any Unicode.",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "minLength": 1
+      }
+    },
+    {
+      "name": "symbol",
+      "description": "Token symbol as recorded at launch. User-chosen.",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "minLength": 1
+      }
+    },
+    {
+      "name": "token_uri",
+      "description": "URI of the token's off-chain metadata JSON.",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "minLength": 1
+      }
+    },
+    {
+      "name": "quote_token",
+      "description": "Token the curve is priced in. Usually WMON (`0x3bd359c1119da7da1d913d1c4d2b7c461115433a`); some `v2` tokens pair with other tokens.",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "pattern": "0x[0-9a-f]{40}"
+      }
+    },
+    {
+      "name": "pool_address",
+      "description": "Pool address recorded for the token at launch.",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "pattern": "0x[0-9a-f]{40}"
+      }
+    },
+    {
+      "name": "virtual_quote_reserve",
+      "description": "Initial virtual reserve of the quote token on the curve.",
+      "type": "integer",
+      "x-sqlType": "numeric(78,0)",
+      "x-unit": "base units of quote_token",
+      "constraints": {
+        "required": false,
+        "minimum": 0
+      }
+    },
+    {
+      "name": "virtual_token_reserve",
+      "description": "Initial virtual reserve of the launched token on the curve.",
+      "type": "integer",
+      "x-sqlType": "numeric(78,0)",
+      "x-unit": "base units of the token",
+      "constraints": {
+        "required": false,
+        "minimum": 0
+      }
+    },
+    {
+      "name": "target_token_amount",
+      "description": "Target token amount of the curve.",
+      "type": "integer",
+      "x-sqlType": "numeric(78,0)",
+      "x-unit": "base units of the token",
+      "constraints": {
+        "required": false,
+        "minimum": 0
+      }
+    },
+    {
+      "name": "min_token_reserve",
+      "description": "Minimum token reserve of the curve. Only set for `v2` tokens.",
+      "type": "integer",
+      "x-sqlType": "numeric(78,0)",
+      "x-unit": "base units of the token",
+      "constraints": {
+        "required": false,
+        "minimum": 0
+      }
+    },
+    {
+      "name": "created_at",
+      "description": "Timestamp of the block containing the launch event.",
+      "type": "datetime",
+      "format": "%Y-%m-%dT%H:%M:%SZ",
+      "x-unit": "UTC",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "block_number",
+      "description": "Block containing the event.",
+      "type": "integer",
+      "constraints": {
+        "required": true,
+        "minimum": 0
+      }
+    },
+    {
+      "name": "tx_hash",
+      "description": "Transaction containing the event.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "pattern": "0x[0-9a-f]{64}"
+      }
+    },
+    {
+      "name": "log_index",
+      "description": "Position of the event log within its block.",
+      "type": "integer",
+      "constraints": {
+        "required": true,
+        "minimum": 0
+      }
+    }
+  ],
+  "missingValues": [
+    ""
+  ],
+  "primaryKey": [
+    "chain",
+    "token_address"
+  ]
+}

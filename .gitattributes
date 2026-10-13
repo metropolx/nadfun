@@ -1,0 +1,6 @@
+* text=auto eol=lf
+# Data files are byte-exact (checksummed; some names contain CR/LF inside quotes):
+# no EOL conversion. Still diffable.
+data/** -text linguist-generated
+manifest.json -text linguist-generated
+datapackage.json -text linguist-generated

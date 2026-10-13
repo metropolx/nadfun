@@ -1,0 +1,112 @@
+{
+  "fields": [
+    {
+      "name": "chain",
+      "description": "Chain the event was observed on.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "monad"
+        ]
+      }
+    },
+    {
+      "name": "token_address",
+      "description": "Graduated token. Joins to `tokens` on (chain, token_address).",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "pattern": "0x[0-9a-f]{40}"
+      }
+    },
+    {
+      "name": "launchpad",
+      "description": "Launchpad that emitted the event.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "enum": [
+          "nadfun"
+        ]
+      }
+    },
+    {
+      "name": "contract_address",
+      "description": "Bonding-curve contract that emitted the event.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "pattern": "0x[0-9a-f]{40}"
+      }
+    },
+    {
+      "name": "pool_address",
+      "description": "Pool address recorded in the graduation event.",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "pattern": "0x[0-9a-f]{40}"
+      }
+    },
+    {
+      "name": "graduated_at",
+      "description": "Timestamp of the block containing the graduation event.",
+      "type": "datetime",
+      "format": "%Y-%m-%dT%H:%M:%SZ",
+      "x-unit": "UTC",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "block_number",
+      "description": "Block containing the event.",
+      "type": "integer",
+      "constraints": {
+        "required": true,
+        "minimum": 0
+      }
+    },
+    {
+      "name": "tx_hash",
+      "description": "Transaction containing the event.",
+      "type": "string",
+      "constraints": {
+        "required": true,
+        "pattern": "0x[0-9a-f]{64}"
+      }
+    },
+    {
+      "name": "log_index",
+      "description": "Position of the event log within its block.",
+      "type": "integer",
+      "constraints": {
+        "required": true,
+        "minimum": 0
+      }
+    }
+  ],
+  "missingValues": [
+    ""
+  ],
+  "primaryKey": [
+    "chain",
+    "token_address"
+  ],
+  "foreignKeys": [
+    {
+      "fields": [
+        "chain",
+        "token_address"
+      ],
+      "reference": {
+        "resource": "tokens-csv",
+        "fields": [
+          "chain",
+          "token_address"
+        ]
+      }
+    }
+  ]
+}

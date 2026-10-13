@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "token_graduations.json",
+  "description": "One row per token that left its bonding curve (one CurveGraduate event).",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "chain",
+      "token_address",
+      "launchpad",
+      "contract_address",
+      "pool_address",
+      "graduated_at",
+      "block_number",
+      "tx_hash",
+      "log_index"
+    ],
+    "properties": {
+      "chain": {
+        "description": "Chain the event was observed on.",
+        "type": "string",
+        "enum": [
+          "monad"
+        ]
+      },
+      "token_address": {
+        "description": "Graduated token. Joins to `tokens` on (chain, token_address).",
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{40}$"
+      },
+      "launchpad": {
+        "description": "Launchpad that emitted the event.",
+        "type": "string",
+        "enum": [
+          "nadfun"
+        ]
+      },
+      "contract_address": {
+        "description": "Bonding-curve contract that emitted the event.",
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{40}$"
+      },
+      "pool_address": {
+        "description": "Pool address recorded in the graduation event.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "pattern": "^0x[0-9a-f]{40}$"
+      },
+      "graduated_at": {
+        "description": "Timestamp of the block containing the graduation event.",
+        "type": [
+          "string",
+          "null"
+        ],
+        "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+      },
+      "block_number": {
+        "description": "Block containing the event.",
+        "type": "integer",
+        "minimum": 0
+      },
+      "tx_hash": {
+        "description": "Transaction containing the event.",
+        "type": "string",
+        "pattern": "^0x[0-9a-f]{64}$"
+      },
+      "log_index": {
+        "description": "Position of the event log within its block.",
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "dataset": "nadfun-launches",
+  "schema_version": "1.0.0",
+  "exporter_version": "0.1.0",
+  "snapshot_at": "2026-10-13T20:28:18Z",
+  "source": {
+    "database": "dyad",
+    "schema_migration": "9"
+  },
+  "chains": {
+    "monad": {
+      "complete_through_block": 113135630
+    }
+  },
+  "tables": {
+    "tokens": {
+      "rows": 34626,
+      "max_block_number": 113133301,
+      "files": {
+        "csv": {
+          "path": "data/tokens/tokens.csv",
+          "bytes": 17766434,
+          "sha256": "a5373a88fd122d4697d5043296d8a611ee9499ace90fe7eb77d021578c67bbec"
+        },
+        "json": {
+          "path": "data/tokens/tokens.json",
+          "bytes": 29261837,
+          "sha256": "d66bfbfe17c85c9d810696e37f115e7a1249d5a18d4a809c19c2b88671f696ce"
+        }
+      }
+    },
+    "token_graduations": {
+      "rows": 180,
+      "max_block_number": 110980938,
+      "files": {
+        "csv": {
+          "path": "data/token_graduations/token_graduations.csv",
+          "bytes": 43699,
+          "sha256": "3c617d4fa3a2ec078a01e0140c229de1bf9c105570d483094b5ab95d1aefea6a"
+        },
+        "json": {
+          "path": "data/token_graduations/token_graduations.json",
+          "bytes": 68618,
+          "sha256": "4ca10653f152ad95ea90871eeea4c53ca84e0c246ba26ff0aff91b92c1247ed3"
+        }
+      }
+    }
+  }
+}
